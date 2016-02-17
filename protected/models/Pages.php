@@ -112,4 +112,30 @@ class Pages extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function afterFind()
+	{
+		$translate = Yii::app()->translate;
+		$bahasaYangPilih=Yii::app()->translate->getLanguage();
+		$bahasaDefault = Yii::app()->params['defaultLanguage'];
+		$main['name'] = $this->name;
+		$main['content'] = $this->content;
+		
+		$this->name = Yii::t('pages\\name\\'.$this->id, 'name' );
+		$this->content = Yii::t('pages\\content\\'.$this->id, 'content');
+		
+		if ($bahasaYangPilih == $bahasaDefault) {
+			// kalo bahasa nya sama dengan default
+			$this->name = $main['name'];
+			$this->content = $main['content'];
+		}else{
+			if($translate->hasMessages()){
+				$this->name = $main['name'];
+				$this->content = $main['content'];
+			}
+		}
+
+		return true;
+	}
+
 }

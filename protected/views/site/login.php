@@ -16,9 +16,6 @@
 
 <div class="log-input">
 	<div class="log-input-left">
-		<!-- <input type="text" class="user" value="<?php echo $model->username; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"/>
-		<input type="text" class="lock" value="<?php echo $model->password; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/> -->
-
 		<?php echo $form->labelEx($model,'username'); ?>
 		<?php echo $form->textField($model,'username',array('class'=>'user')); ?>
 		<?php echo $form->error($model,'username'); ?>
